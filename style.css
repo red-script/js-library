@@ -1,0 +1,9 @@
+.displayContainer {
+    background-color: antiquewhite;
+}
+.displayContainer>div {
+    background-color: bisque;
+    width: 200px ;
+    padding: 5px;
+    margin: 10px;
+}
