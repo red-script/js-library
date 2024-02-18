@@ -1,14 +1,15 @@
 const library = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-
-    this.isRead = function () {
-        this.read = !this.read;
-    };
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+    isRead() {
+        this.read = !this.read
+    }
 }
 
 function addBookToLibrary() {
@@ -16,7 +17,6 @@ function addBookToLibrary() {
     let author = document.getElementById('auth').value;
     let pages = document.getElementById('pagNo').value;
     let read = document.getElementById('read').checked;
-    //document.getElementById('read').checked ? read = 'yes' : read = 'no';
 
     const newBook = new Book(title, author, pages, read);
     library.push(newBook);
@@ -40,7 +40,7 @@ function display() {
     const dispContainer = document.querySelector('.displayContainer');
     dispContainer.innerHTML = '';
     
-    library.forEach((book, index, readStatus) => { // Use a different variable name for the book object to avoid confusion
+    library.forEach((book, index) => {
         const newDisp = document.createElement('div');
         newDisp.innerHTML = `<p>Book Title: ${book.title}</p>` +
                             `<p>Book Author: ${book.author}</p>` +
@@ -50,7 +50,7 @@ function display() {
                             `<button class="readBtn" data-index="${index}">Read</button>`;
         dispContainer.appendChild(newDisp);
 
-        const deleteBtn = newDisp.querySelector('.deleteBtn'); // Select the delete button within the newly created div
+        const deleteBtn = newDisp.querySelector('.deleteBtn');
         deleteBtn.addEventListener('click', () => {
             const index = parseInt(deleteBtn.getAttribute('data-index'));
             deleteBook(index);          
